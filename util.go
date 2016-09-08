@@ -5,6 +5,7 @@ package libvirt
 #include <libvirt/libvirt.h>
 #include <libvirt/libvirt-qemu.h>
 #include <libvirt/virterror.h>
+#include <util/virbitmap.h>
 #include <stdlib.h>
 */
 import "C"
