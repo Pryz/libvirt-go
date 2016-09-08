@@ -453,6 +453,15 @@ func (d *VirDomain) SetVcpusFlags(vcpu uint, flags uint) error {
 	return nil
 }
 
+func (d *VirDomain) PinVcpu(vcpu uint, cpumap []byte, maplen int) error {
+	//result := C.virDomainPinVcpu(d.ptr, C.uint(vcpu), C.uchar(cpumap), C.int(maplen))
+	result := C.virDomainPinVcpu(d.ptr, C.uint(vcpu), (*C.uchar)(unsafe.Pointer(&cpumap)), C.int(maplen))
+	if result == -1 {
+		return GetLastError()
+	}
+	return nil
+}
+
 func (d *VirDomain) Suspend() error {
 	result := C.virDomainSuspend(d.ptr)
 	if result == -1 {
