@@ -462,7 +462,7 @@ func (d *VirDomain) PinVcpu(vcpu uint, cpumap []byte, maplen int) error {
 }
 
 func (d *VirDomain) PinVcpuFlags(vcpu uint, cpumap []byte, maplen int, flags uint) error {
-	result := C.virDomainPinVcpu(d.ptr, C.uint(vcpu), (*C.uchar)(unsafe.Pointer(&cpumap[0])), C.int(maplen), C.uint(flags))
+	result := C.virDomainPinVcpuFlags(d.ptr, C.uint(vcpu), (*C.uchar)(unsafe.Pointer(&cpumap[0])), C.int(maplen), C.uint(flags))
 	if result == -1 {
 		return GetLastError()
 	}
